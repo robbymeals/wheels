@@ -1,0 +1,78 @@
+# The LogReg Project
+When I need to learn some of a new programming language for work or whatever, 
+I like to write up a quick and dirty implementation of 
+logistic regression with simple gradient descent, from scratch.
+
+This exercise is usually enough to learn the pieces of the language I will 
+need to be minimally productive with it: 
+I/O, basic data structures, imports, etc.
+I let myself use the basic math library or module in each implementation, 
+but no machine learning or linear algebra modules. 
+These aren't meant to be scalable or useful in any way other than as a 
+learning exercise for me, though I welcome feedback on how I did it wrong.
+
+I started doing this after working through Andrew Ng's machine learning 
+course on Coursera, and I use the second assignment from that course as 
+the foundation for each implementation.
+
+For each implementation, I build the following from scratch:
+
+0. Data i/o and variable manipulation
+1. gradient descent
+2. logistic regression cost function
+3. precision/recall/F crossvalidation evaluation function or method
+
+Included is the titanic3 dataset, which is what I use to test my 
+implementations, from here: 
+http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/titanic.html.
+Info on how this dataset was lovingly created by Thomas E. Cason 
+as an undergrad research assistant is available here:
+http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/titanic3info.txt
+
+The base model and performance metrics I aim for in each implementation 
+can be fit obtained in R as follows:
+
+```R
+    prf <- function(pred_act){
+        ## pred_act is two column dataframe of predictions, actuals
+        counts <- table(pred_act)
+        r <- list()
+        r['Acc'] <- sum(counts[1,1],counts[2,2])/sum(counts) # Accuracy
+        r['P_0'] <- counts[1,1]/sum(counts[,1])              # Miss Precision
+        r['R_0'] <- counts[1,1]/sum(counts[1,])              # Miss Recall
+        r['F_0'] <- (2*r[['P_0']]*r[['R_0']])/
+                     sum(r[['P_0']],r[['R_0']])              # Miss F
+        r['P_1'] <- counts[2,2]/sum(counts[,2])              # Hit Precision
+        r['R_1'] <- counts[2,2]/sum(counts[2,])              # Hit Recall
+        r['F_1'] <- (2*r[['P_1']]*r[['R_1']])/
+                     sum(r[['P_1']],r[['R_1']])              # Hit F
+        round(as.data.frame(r),2)}
+    titanic <- read.csv('data/titanic3.csv')
+    titanic$pclass_2 <- as.numeric(titanic$pclass==2)
+    titanic$pclass_3 <- as.numeric(titanic$pclass==3)
+    titanic$male <- as.numeric(titanic$sex=='male')
+    titanic$alone = as.numeric(titanic$sibsp==0&titanic$parch==0)
+    titanic1_rows <- sample(rownames(titanic),nrow(titanic)/2)
+    titanic2_rows <- rownames(titanic)[!rownames(titanic)%in%titanic1_rows]
+    titanic1 = titanic[titanic1_rows, ]
+    titanic2 = titanic[titanic2_rows, ]
+    titanic1_glm <- glm(survived ~ male + alone + pclass_2 + pclass_3,
+                       data=titanic1, family="binomial")
+    titanic2_glm <- glm(survived ~ male + alone + pclass_2 + pclass_3,
+                       data=titanic2, family="binomial")
+    titanic1to2_pred_act = data.frame('pred'=as.numeric(predict(titanic1_glm,
+                                 newdata=titanic2, type='response')>=0.5),
+                                 'act'=titanic2['survived'])
+    titanic2to1_pred_act = data.frame('pred'=as.numeric(predict(titanic2_glm,
+                                 newdata=titanic1, type='response')>=0.5),
+                                 'act'=titanic1['survived'])
+    rbind(prf(titanic1to2_pred_act), prf(titanic2to1_pred_act))
+```
+
+which should end up looking something like:
+```R
+R> rbind(prf(titanic1to2_pred_act), prf(titanic2to1_pred_act))
+   Acc  P_0  R_0  F_0  P_1  R_1  F_1
+1 0.79 0.84 0.81 0.83 0.70 0.74 0.72
+2 0.77 0.84 0.80 0.82 0.66 0.71 0.68
+```
