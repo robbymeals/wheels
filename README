@@ -1,4 +1,4 @@
-# The LogReg Project
+# The Logistic Regression Project
 When I need to learn some of a new programming language for work or whatever, 
 I like to write up a quick and dirty implementation of 
 logistic regression with simple gradient descent, from scratch.
@@ -6,10 +6,15 @@ logistic regression with simple gradient descent, from scratch.
 This exercise is usually enough to learn the pieces of the language I will 
 need to be minimally productive with it: 
 I/O, basic data structures, imports, etc.
-I let myself use the basic math library or module in each implementation, 
-but no machine learning or linear algebra modules. 
-These aren't meant to be scalable or useful in any way other than as a 
-learning exercise for me, though I welcome feedback on how I did it wrong.
+The rules are:
+
+- I can use basic math and I/O libraries/modules, but no stats, 
+  machine learning or linear algebra;
+- umm, that's it...
+
+These aren't meant to be generalized, scalable or useful in any way other 
+than as a learning exercise for me, though I "welcome" feedback on how 
+I did it wrong.
 
 I started doing this after working through Andrew Ng's machine learning 
 course on Coursera, and I use the second assignment from that course as 
@@ -17,7 +22,7 @@ the foundation for each implementation.
 
 For each implementation, I build the following from scratch:
 
-0. Data i/o and variable manipulation
+0. Data i/o and feature engineering 
 1. gradient descent
 2. logistic regression cost function
 3. precision/recall/F crossvalidation evaluation function or method
