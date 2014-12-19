@@ -1,4 +1,4 @@
-## The Logistic-Regression-with-Gradient-Descent Project
+### The Logistic-Regression-with-Gradient-Descent Project
 
 When I need to learn some of a new programming language for work or whatever, 
 One of the things I like to do is write up a quick and dirty implementation of 
@@ -11,6 +11,8 @@ The rules are:
 
 - I can use random sampling, basic math and I/O libraries/modules, 
   but no stats, machine learning or linear algebra;
+- I can use language documentation and stackoverflow but I can't use
+  or look at anyone's code.
 - umm, that's it...
 
 These aren't meant to be production code, or generalized in any way, or 
