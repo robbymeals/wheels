@@ -1,7 +1,7 @@
 ### The Logistic-Regression-with-Gradient-Descent Project
 
 When I need to learn some of a new programming language for work or whatever, 
-One of the things I like to do is write up a quick and dirty implementation of 
+one of the things I like to do is write up a quick and dirty implementation of 
 logistic regression with simple gradient descent, from scratch.
 
 This exercise is often enough to learn the pieces of the language I will 
