@@ -20,6 +20,12 @@ scalable or really useful in any way other than as a learning exercise for me,
 and maybe for you?
 Though I do welcome feedback on how I did it wrong. Really.
 
+I have some implementation for each of the languages with a directory in here
+but if the code isn't in there, it's because I haven't had time to make it 
+at least a little presentable yet. The perfect is the enemy of the mediocre,
+so I'll err on the side of just getting them up here, but I'm not a damn
+masochist either.
+
 I started doing this after working through Andrew Ng's machine learning 
 course on Coursera, and I use the first and second assignment from that 
 course as the foundation for each implementation.
