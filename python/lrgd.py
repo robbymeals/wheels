@@ -1,5 +1,6 @@
 import math
 import csv
+import random
 
 
 def sigmoid(z):
@@ -56,28 +57,46 @@ def get_performance(pred_act):
     r_1 = float(sum([all([pa[0]==1.0, pa[1]==1.0]) 
         for pa in pred_act]))/sum([pa[1]==1.0 for pa in pred_act])
     f_1 = (2*(p_1*r_1))/(p_1+r_1)
-    metrics = [acc, p_0, r_0, f_0, p_1, r_1, f_1]
-    return metrics
+    return "acc: {}, p0: {}, r0: {}, f0: {}, p1: {}, r1: {}, f1: {}".format(*
+            [round(m,2) for m in acc, p_0, r_0, f_0, p_1, r_1, f_1])
+
+
+def fit(titanic, iterations, alpha):
+    X = [get_features(r) for r in titanic]
+    theta = [0 for i in xrange(len(X[0]))]
+    y = [float(r['survived']) for r in titanic]
+    for i in xrange(iterations):
+        theta = gradient_descent_step(0.01, theta, X, y)
+        #print [round(t,2) for t in theta]
+    return theta, y 
+
+
+def get_oos_perf(titanic_a, theta_b, y_a):
+    X = [get_features(r) for r in titanic_a]
+    y_preds = [float(hypothesis(theta_b, X[i])>0.5) for i in xrange(len(X))]
+    pred_act = zip(y_preds, y_a)
+    performance = get_performance(pred_act)
+    return performance 
 
 
 if __name__ == '__main__':
+    iterations = 5000
+    alpha = 0.02
     f = open('data/titanic3.csv','rb')
     w = csv.reader(f)
     h = w.next()
     titanic = [dict(zip(h,r)) for r in w]
-    X = [get_features(r) for r in titanic]
-    y = [float(r['survived']) for r in titanic]
-    theta = [0 for i in xrange(len(X[0]))]
-    iterations = 5000
-    alpha = 0.02
-    for i in xrange(iterations):
-        theta = gradient_descent_step(0.01, theta, X, y)
+    for i in xrange(5):
+        random.shuffle(titanic)
+    titanic1 = titanic[0:(len(titanic)/2)]
+    titanic2 = titanic[(len(titanic)/2):]
+    theta1, y1 = fit(titanic1, iterations, alpha)
+    theta2, y2 = fit(titanic2, iterations, alpha)
+    perf12 = get_oos_perf(titanic2, theta1, y2)
+    perf21 = get_oos_perf(titanic1, theta2, y1)
+    print 'perf12: '+perf12
+    print 'perf21: '+perf21
 
-    y_preds = [float(hypothesis(theta, X[i])>0.5) for i in xrange(len(X))]
-    pred_act = zip(y, y_preds)
-    performance = get_performance(pred_act)
-    print [round(t,2) for t in theta]
-    print [round(m,2) for m in performance]
 
 
 
