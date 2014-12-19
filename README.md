@@ -1,5 +1,5 @@
-# The Logistic-Regression-With-Gradient-Descent Project
-## Just rolls right off the tongue, doesn't it?
+## The Logistic-Regression-with-Gradient-Descent Project
+
 When I need to learn some of a new programming language for work or whatever, 
 One of the things I like to do is write up a quick and dirty implementation of 
 logistic regression with simple gradient descent, from scratch.
