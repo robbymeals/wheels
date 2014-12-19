@@ -57,8 +57,9 @@ def get_performance(pred_act):
     r_1 = float(sum([all([pa[0]==1.0, pa[1]==1.0]) 
         for pa in pred_act]))/sum([pa[1]==1.0 for pa in pred_act])
     f_1 = (2*(p_1*r_1))/(p_1+r_1)
-    return "acc: {}, p0: {}, r0: {}, f0: {}, p1: {}, r1: {}, f1: {}".format(*
-            [round(m,2) for m in acc, p_0, r_0, f_0, p_1, r_1, f_1])
+    return ' '.join(["{0}: {1:.2f}".format(k,v) for k,v in
+           zip(['acc', 'p_0', 'r_0', 'f_0', 'p_1', 'r_1', 'f_1'],
+           [acc, p_0, r_0, f_0, p_1, r_1, f_1])])
 
 
 def fit(titanic, iterations, alpha):
@@ -94,8 +95,9 @@ if __name__ == '__main__':
     theta2, y2 = fit(titanic2, iterations, alpha)
     perf12 = get_oos_perf(titanic2, theta1, y2)
     perf21 = get_oos_perf(titanic1, theta2, y1)
-    print 'perf12: '+perf12
-    print 'perf21: '+perf21
+    print '2way xval perf:'
+    print '1->2: '+perf12
+    print '2->1: '+perf21
 
 
 

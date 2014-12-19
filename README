@@ -1,31 +1,26 @@
-# The Logistic Regression Project
+# The Logistic-Regression-With-Gradient-Descent Project
+## Just rolls right off the tongue, doesn't it?
 When I need to learn some of a new programming language for work or whatever, 
-I like to write up a quick and dirty implementation of 
+One of the things I like to do is write up a quick and dirty implementation of 
 logistic regression with simple gradient descent, from scratch.
 
-This exercise is usually enough to learn the pieces of the language I will 
+This exercise is often enough to learn the pieces of the language I will 
 need to be minimally productive with it: 
-I/O, basic data structures, imports, etc.
+I/O, basic data structures, imports, types, math-y syntax, etc.
 The rules are:
 
-- I can use basic math and I/O libraries/modules, but no stats, 
-  machine learning or linear algebra;
+- I can use random sampling, basic math and I/O libraries/modules, 
+  but no stats, machine learning or linear algebra;
 - umm, that's it...
 
-These aren't meant to be generalized, scalable or useful in any way other 
-than as a learning exercise for me, though I "welcome" feedback on how 
-I did it wrong.
+These aren't meant to be production code, or generalized in any way, or 
+scalable or really useful in any way other than as a learning exercise for me, 
+and maybe for you?
+Though I do welcome feedback on how I did it wrong. Really.
 
 I started doing this after working through Andrew Ng's machine learning 
-course on Coursera, and I use the second assignment from that course as 
-the foundation for each implementation.
-
-For each implementation, I build the following from scratch:
-
-0. Data i/o and feature engineering 
-1. gradient descent
-2. logistic regression cost function
-3. precision/recall/F crossvalidation evaluation function or method
+course on Coursera, and I use the first and second assignment from that 
+course as the foundation for each implementation.
 
 Included is the titanic3 dataset, which is what I use to test my 
 implementations, from here: 
