@@ -33,6 +33,7 @@ course as the foundation for each implementation.
 Included is the titanic3 dataset, which is what I use to test my 
 implementations, from here: 
 http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/titanic.html.
+
 Info on how this dataset was lovingly created by Thomas E. Cason 
 as an undergrad research assistant is available here:
 http://biostat.mc.vanderbilt.edu/wiki/pub/Main/DataSets/titanic3info.txt
