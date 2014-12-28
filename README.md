@@ -1,8 +1,9 @@
-### The Logistic-Regression-with-Gradient-Descent Project
+### In Which I Reinvented a Bunch of Wheels, for Learning
 
 When I need to learn some of a new programming language for work or whatever, 
-one of the things I like to do is write up a quick and dirty implementation of 
-logistic regression with simple gradient descent, from scratch.
+one of the things I like to do is write up quick and dirty implementations of 
+various machine learning algorithms that I know pretty well and use often,
+like logistic regression with simple gradient descent, from scratch.
 
 This exercise is often enough to learn the pieces of the language I will 
 need to be minimally productive with it: 
@@ -15,6 +16,13 @@ The rules are:
   or look at anyone's code.
 - umm, that's it...
 
+Also, when I am learning an new algorithm or machine learning technique, I 
+like to write quick and dirty implementations of them in a language I know well,
+so I can make sure to kick the tires on my understanding and intuitions.
+
+So this is where I am going to throw these implementations and explorations,
+to give myself the very minimum of public accountablity and make sure
+I am actually completely misunderstanding the things I am trying to learn.
 These aren't meant to be production code, or generalized in any way, or 
 scalable or really useful in any way other than as a learning exercise for me, 
 and maybe for you?
